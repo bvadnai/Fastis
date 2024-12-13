@@ -98,6 +98,23 @@ public extension FastisShortcut where Value == FastisRange {
         }
     }
 
+    /// Range: from **`now.startOfDay - 3 months`** to **`now.endOfDay
+    static var last3Months: FastisShortcut {
+        FastisShortcut(name: "Last 3 months") { calendar in
+            let now = Date()
+            let monthAgo = calendar.date(byAdding: .month, value: -3, to: now)!
+            return FastisRange(from: monthAgo.startOfDay(in: calendar), to: now.endOfDay(in: calendar))
+        }
+    }
+
+    /// Range: from **`now.startOfDay - 6 months`** to **`now.endOfDay
+    static var last6Months: FastisShortcut {
+        FastisShortcut(name: "Last 6 months") { calendar in
+            let now = Date()
+            let monthAgo = calendar.date(byAdding: .month, value: -6, to: now)!
+            return FastisRange(from: monthAgo.startOfDay(in: calendar), to: now.endOfDay(in: calendar))
+        }
+    }
 }
 
 public extension FastisShortcut where Value == Date {
